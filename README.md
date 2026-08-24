@@ -1,6 +1,6 @@
 # README
 
-[keyhac](https://github.com/crftwr/keyhac-win) customization.
+[keyhac-win](https://github.com/crftwr/keyhac-win) (now archived) customization.
 
 Environment:
 
@@ -12,13 +12,16 @@ Environment:
 
 Run [`install.ps1`](./install.ps1) to create junction of `Keyhac` to AppData.
 
+```
+powershell .\install.ps1
+```
+
 ### Optional
 
 Running [`ScheduledTask/install.ps1`](./ScheduledTask/install.ps1) with `keyhac.exe` path copies `ScheduledTask/run.ps1` to `$env:AppData\KeyhacStarter` and registers scheduled task to run it at logon:
 
-```PowerShell
-# EXAMPLE
-.\ScheduledTask\install.ps1 "$env:USERPROFILE\Personal\tools\portable_apps\keyhac\keyhac.exe"
+```
+powershell .\ScheduledTask\install.ps1 "$env:USERPROFILE\Personal\tools\portable_apps\keyhac\keyhac.exe"
 ```
 
 ## Development Setup
