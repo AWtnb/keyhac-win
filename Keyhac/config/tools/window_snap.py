@@ -14,7 +14,9 @@ def setup(_keymap: WindowKeymap) -> None:
     subthread.setup(keymap)
 
 
-def snap_window(dest: tuple[int, int, int, int]) -> pyauto.Window | None:
+def snap_window(
+    dest: tuple[int, int, int, int], maximize: bool = False
+) -> pyauto.Window | None:
     wnd = keymap.getTopLevelWindow()
     if not wnd or is_keyhac_console(wnd):
         return None
@@ -31,6 +33,8 @@ def snap_window(dest: tuple[int, int, int, int]) -> pyauto.Window | None:
     def _job_finished(_) -> None:
         if wnd.getRect() != rect:
             wnd.setRect(rect)
+        if maximize:
+            wnd.maximize()
 
     subthread.run(_job_snap, _job_finished)
     return wnd
@@ -54,9 +58,7 @@ def invoke_maximized_snapper(monitor_index: int) -> CallbackFunc:
             target = infos[monitor_index][1]
         except IndexError:
             return
-        wnd = snap_window(target)
-        if wnd is not None:
-            wnd.maximize()
+        snap_window(target, True)
 
     return _snap
 
