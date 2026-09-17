@@ -37,7 +37,7 @@ CLIPBOARD_FORMATTER_MAPPING = {}
 
 
 for menu, func in {
-    "to codeblock": lambda c: f"```\n{c.rstrip()}\n```\n\n",
+    "to codeblock": lambda c: f"\n\n```\n{c.rstrip()}\n```\n\n",
     "to codeblock-ai-safe": lambda c: (
         f"```\n{c.rstrip().replace('@', '＠')}\n```\n（アットマークは全角に変換済）\n\n"
     ),
