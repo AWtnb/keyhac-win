@@ -100,6 +100,11 @@ def bind(keymap) -> None:
     km["U1-Q"] = lambda: paste(None, simple_quote)
     km["LC-U1-Q"] = lambda: paste(None, as_single_quoted_line)
 
+    # paste as code
+    km["U0-S-AtMark"] = keymap.defineMultiStrokeKeymap()
+    km["U0-S-AtMark"]["C"] = lambda: paste(None, lambda s: f"`{s}`")
+    km["U0-S-AtMark"]["S-C"] = lambda: paste(None, lambda s: f"\n```\n{s}\n```\n")
+
     # paste as fullwidth / halfwidth
     km["U1-W"] = lambda: paste(format_func=lambda s: to_full_letter(s, True))
     km["LS-U1-W"] = lambda: paste(format_func=lambda s: to_half_letter(s, True))
